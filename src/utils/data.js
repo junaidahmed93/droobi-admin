@@ -1,0 +1,17 @@
+export const patientData = [
+    { id: 1, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+    { id: 2, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+    { id: 3, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+    { id: 4, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+    { id: 5, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+    { id: 6, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+    { id: 7, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+    { id: 8, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+    { id: 9, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+    { id: 10, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+    { id: 11, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+    { id: 12, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+    { id: 13, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+    { id: 14, name: 'Asad', age: '20', gender: 'Male', disease: 'Heart', ETA: '20min', firstAd: 'not', weight: '50', height: '5.5', bloodGroup: 'B+', operated: 'No', heartRate: '98', bloodPressure: '120/75', cholestrol: '185', bloodSugar: '85' },
+
+]
