@@ -11,7 +11,6 @@ import { bindActionCreators } from 'redux';
 import { store } from '../store';
 import { formsValidation } from '../utils/Helpers';
 import GlobalStyle from '../utils/Styles';
-import * as actions from '../actions/bookingActions';
 import SinglePatientDetail from '../components/SinglePatientDetail';
 import { LineChart, Line, AreaChart, Area, Brush, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
@@ -202,7 +201,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(actions, dispatch),
+    // actions: bindActionCreators("actions", dispatch),
   };
 }
 

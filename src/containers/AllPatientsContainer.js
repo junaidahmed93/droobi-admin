@@ -16,7 +16,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 // import BookingCharts from '../../components/booking/BookingCharts';
 import GlobalStyle from '../utils/Styles';
-import * as actions from '../actions/bookingActions';
+import * as actions from '../actions/IncomingPatientAction';
 import AllPatientTable from '../components/booking/AllPatientTable';
 import { nextBookings, previousBookings, startRecord, endRecord, totalRecords } from '../utils/Pagination';
 const names = [
@@ -59,11 +59,12 @@ class BookingContainer extends Component {
 
 
   componentDidMount() {
-    this.props.actions.getAllBookings();
-    this.refreshBooking();
+    this.props.actions.getAllIncomingPatients();
+    // this.refreshBooking();
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('nextProps-------------------------',nextProps)
     this.setState({
       // shownRecords: nextProps.bookings,
       // storedRecords: nextProps.bookings,
@@ -141,13 +142,13 @@ class BookingContainer extends Component {
     this.setState({ showSearchbar: false, showFilterBar: false, showTagBar: true })
   }
 
-  refreshBooking() {
-    this.interval = setInterval(() => {
-      console.log('startingNextCount', this.startingNextCount);
-      this.currentPageNumber = this.startingNextCount;
-      this.props.actions.getAllBookings();
-    }, 10000);
-  }
+  // refreshBooking() {
+  //   this.interval = setInterval(() => {
+  //     console.log('startingNextCount', this.startingNextCount);
+  //     this.currentPageNumber = this.startingNextCount;
+  //     this.props.actions.getAllBookings();
+  //   }, 10000);
+  // }
 
   nextButton() {
     const nextRecords = nextBookings(this.state, this.startingNextCount);
@@ -224,7 +225,7 @@ class BookingContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    bookings: state.bookingReducer.bookings,
+    bookings: state.IncomingPatientReducer.incomingPatient, 
   };
 }
 

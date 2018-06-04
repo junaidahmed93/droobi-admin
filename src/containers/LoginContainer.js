@@ -6,7 +6,6 @@ import Snackbar from 'material-ui/Snackbar';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import * as actions from '../actions/loginActions';
 import * as forgetPasswordActions from '../actions/ForgetPasswordActions';
-import * as NotificationActions from '../actions/NotificationActions';
 import Login from '../components/Login';
 import ForgetPassword from '../components/login/ForgetPassword';
 import LoaderIndicator from '../components/loader';
@@ -168,8 +167,7 @@ function mapStateToProps(state) {
     codeVerify: state.ForgetPasswordReducer.codeVerify,
     resetToken: state.ForgetPasswordReducer.resetToken,
     passwordChanged: state.ForgetPasswordReducer.passwordChanged,
-    message: state.NotificationReducer.message,
-    isLoading: state.NotificationReducer.isLoading,
+  
   };
 }
 
@@ -177,7 +175,6 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(actions, dispatch),
     forgetPasswordActions: bindActionCreators(forgetPasswordActions, dispatch),
-    NotificationActions: bindActionCreators(NotificationActions, dispatch),
 
   };
 }

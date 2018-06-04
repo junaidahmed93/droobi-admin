@@ -20,19 +20,19 @@ export default class BookingTable extends React.Component {
   }
 
   render() {
+    console.log('console..log', this.props);
     const rows = this.props.rows.map(data => (
       <TableRow style={GlobalStyle.tableRowSpacing} key={data.id} className="table-row-style">
         {/* <TableRowColumn data-uid={data.id}>{data.dropoffDate}</TableRowColumn>
                     <TableRowColumn data-uid={data.id}>02:20Pm</TableRowColumn> */}
-        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell} style={{ textOverflow: 'clip', width:'20px !important' }}>{data.referenceId}</TableRowColumn>
-        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.batchId}</TableRowColumn>
-        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.flightNumber}</TableRowColumn>
-        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.userName}</TableRowColumn>
-        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.driPorterName}</TableRowColumn>
-        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{statusMapping(data.status)}</TableRowColumn>
-        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.numberOfBags}</TableRowColumn>
-        {/* <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.pickupLocationName}</TableRowColumn> */}
-        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.departureLocationName}</TableRowColumn>
+        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.name}</TableRowColumn>
+        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.gender}</TableRowColumn>
+        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.age}</TableRowColumn>
+        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.disease}</TableRowColumn>
+        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.bloodGroup}</TableRowColumn>
+        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.height}</TableRowColumn>
+        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.operated}</TableRowColumn>
+        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.weight}</TableRowColumn>
       </TableRow>
 
     ));
@@ -40,15 +40,14 @@ export default class BookingTable extends React.Component {
       <Table selectable onCellClick={this.handleCellClick}>
         <TableHeader style={GlobalStyle.tableHeaderSpacing} displaySelectAll={this.state.showCheckboxes} adjustForCheckbox={this.state.showCheckboxes}>
           <TableRow style={GlobalStyle.tableHeaderSpacing} className="table-header-style">
-            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Ref Id</TableHeaderColumn>
-            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Batch Id</TableHeaderColumn>
-            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Flight No</TableHeaderColumn>
-            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Customer</TableHeaderColumn>
-            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Driporter</TableHeaderColumn>
-            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Status</TableHeaderColumn>
-            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Luggage</TableHeaderColumn>
-            {/* <TableHeaderColumn style={GlobalStyle.tableRowCell}>Pickup Location</TableHeaderColumn> */}
-            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Drop off</TableHeaderColumn>
+            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Name</TableHeaderColumn>
+            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Gender</TableHeaderColumn>
+            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Age</TableHeaderColumn>
+            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Disease</TableHeaderColumn>
+            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Blood Group</TableHeaderColumn>
+            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Height</TableHeaderColumn>
+            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Operated</TableHeaderColumn>
+            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Weight</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={this.state.showCheckboxes} >

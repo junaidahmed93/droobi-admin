@@ -1,6 +1,5 @@
 import CONSTANTS from '../constants/actionConstants';
 import * as loaderActions from './loaderActions';
-import * as NotificationActions from './NotificationActions';
 import LogoutSource from '../sources/LogoutSource';
 
 export function requestLogOutUser() {
@@ -36,7 +35,6 @@ export function logOutUser() {
       .catch((err) => {
         console.log('MOST IMPORTANT', err);
         dispatch(loaderActions.loaderStop());
-        dispatch(NotificationActions.showNotification(err.message));
       });
   };
 }

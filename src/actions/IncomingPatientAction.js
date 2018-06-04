@@ -1,6 +1,5 @@
 import CONSTANTS from '../constants/actionConstants';
 import * as LoaderActions from './loaderActions';
-import * as NotificationActions from './NotificationActions';
 import IncomingPatientSource from '../sources/IncomingPatientSource';
 
 export function getIncomingPatientsSuccess(incomingPatient) {
@@ -33,13 +32,11 @@ export function getAllIncomingPatients() {
                     });
                     dispatch(getIncomingPatientsSuccess(bookings));
                 } else {
-                    dispatch(NotificationActions.showNotification(res.message));
                 }
             })
             .catch((err) => {
                 dispatch(LoaderActions.loaderStop());
                 dispatch(getIncomingPatientsFail());
-                NotificationActions.showNotification(err.message);
                 console.log('addUserActions error', err);
             });
     };

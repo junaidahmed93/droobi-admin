@@ -6,8 +6,6 @@ import Idle from 'react-idle';
 import Snackbar from 'material-ui/Snackbar';
 import * as actions from '../actions/loginActions';
 import * as LogoutActions from '../actions/LogoutActions';
-import * as NotificationActions from '../actions/NotificationActions';
-import * as CommonActions from '../actions/CommonActions';
 import * as LoaderActions from '../actions/loaderActions';
 import Header from '../components/Header';
 import LoaderIndicator from '../components/loader';
@@ -23,11 +21,6 @@ class MainComponent extends Component {
   }
 
   componentDidMount() {
-    this.props.CommonActions.getAllCountries();
-    this.props.CommonActions.getAirports();
-    this.props.CommonActions.getServiceAreas();
-    this.props.CommonActions.getBookingCancelReasons();
-    this.props.LoaderActions.loaderStop();
   }
 
 
@@ -101,16 +94,13 @@ function mapStateToProps(state) {
   return {
     user: state.loginReducer.user,
     error: state.loginReducer.error,
-    message: state.NotificationReducer.message,
-    isLoading: state.NotificationReducer.isLoading,
+   
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(actions, dispatch),
-    NotificationActions: bindActionCreators(NotificationActions, dispatch),
-    CommonActions: bindActionCreators(CommonActions, dispatch),
     LogoutActions: bindActionCreators(LogoutActions, dispatch),
     LoaderActions: bindActionCreators(LoaderActions, dispatch),
   };

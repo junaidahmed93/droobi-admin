@@ -1,6 +1,5 @@
 import CONSTANTS from '../constants/actionConstants';
 import * as loaderActions from './loaderActions';
-import * as NotificationActions from './NotificationActions';
 import ForgetPasswordSource from '../sources/ForgetPasswordSource';
 
 export function forgetPasswordCodeSendSuccess() {
@@ -59,13 +58,11 @@ export function sendCode(user) {
       .then((response) => {
         dispatch(loaderActions.loaderStop());
         console.log('response', response);
-        dispatch(NotificationActions.showNotification('Code has been sent'));
         dispatch(forgetPasswordCodeSendSuccess());
       })
       .catch((error) => {
         dispatch(loaderActions.loaderStop());
         console.log('error', error);
-        dispatch(NotificationActions.showNotification(error));
         dispatch(forgetPasswordCodeSendFail());
       });
   };
@@ -78,13 +75,11 @@ export function verifyCode(code) {
       .then((token) => {
         console.log('response', token);
         dispatch(loaderActions.loaderStop());
-        dispatch(NotificationActions.showNotification('Code verified: Enter new password'));
         dispatch(forgetPasswordCodeVerifySucess(token));
       })
       .catch((error) => {
         console.log('error', error);
         dispatch(loaderActions.loaderStop());
-        dispatch(NotificationActions.showNotification(error));
         dispatch(forgetPasswordCodeVerifyFail());
       });
   };
@@ -97,13 +92,11 @@ export function setNewPassword(user) {
       .then((response) => {
         console.log('response', response);
         dispatch(loaderActions.loaderStop());
-        dispatch(NotificationActions.showNotification('New Password updated'));
         dispatch(passwordResetSuccess());
       })
       .catch((error) => {
         console.log('error', error);
         dispatch(loaderActions.loaderStop());
-        dispatch(NotificationActions.showNotification(error));
         dispatch(passwordResetFail());
       });
   };

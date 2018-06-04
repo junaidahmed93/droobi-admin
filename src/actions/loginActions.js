@@ -3,7 +3,6 @@ import CONSTANTS from '../constants/actionConstants';
 import APIURL from '../constants/apiUrlConstants';
 import ErrorMapping from '../utils/ErrorMapping';
 import * as loaderActions from './loaderActions';
-import * as NotificationActions from './NotificationActions';
 import { saveState } from '../utils/StorageUtils';
 
 export function requestInitiate() {
@@ -162,7 +161,6 @@ export function logInUser(user) {
       })
       .catch((err) => {
         dispatch(loaderActions.loaderStop());
-        dispatch(NotificationActions.showNotification(err.message));
       });
   };
 }
