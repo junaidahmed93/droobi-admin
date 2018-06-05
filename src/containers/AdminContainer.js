@@ -135,7 +135,7 @@ class AdminComponent extends Component {
         <MenuItem>
           <div
             className="sideOptions"
-            onClick={() => { this.handleClick('config') }}
+            onClick={() => { this.handleClick('main') }}
             style={
               activeItem === true ? styles.activeText : styles.nonActive
             }
@@ -165,7 +165,7 @@ class AdminComponent extends Component {
     if (e === 'history') {
       browserHistory.push(`/home/admin/patient-history`);
     }
-    
+
     if (e === 'enroute') {
       browserHistory.push('/home/admin/patient-enroute');
     }
