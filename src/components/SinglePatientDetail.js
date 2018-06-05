@@ -29,7 +29,7 @@ export default class BookingEditForm extends React.Component {
         let previousRate = this.state.incomingPatient.heartRate;
         let random = Math.floor((Math.random() * 100) / 10);
         let heartRate = (Number(data.heartRate) + (random));
-        let finalDate = Object.assign({}, data, { heartRate, name: 'pk' });
+        let finalDate = Object.assign({}, data, { heartRate });
         this.color = previousRate > heartRate ? 'green' : 'red';
         this.setState({ incomingPatient: finalDate })
     }
@@ -41,7 +41,8 @@ export default class BookingEditForm extends React.Component {
         const { incomingPatient } = this.state;
         return (
             <form className="form-validation">
-                <h2 style={GlobalStyle.formHeadingsh1}>Patient Details: <span style={{ color: '#27BCBD' }}>{incomingPatient.id}-- Asad</span></h2>
+                <h2 style={GlobalStyle.formHeadingsh1}>Patient Details: <span style={{ color: '#27BCBD' }}>{incomingPatient.name}</span></h2>
+                <br/>
                 <Divider className="paper-divider" />
                 <br />
                 <Grid fluid>
@@ -120,9 +121,54 @@ export default class BookingEditForm extends React.Component {
                         </Col>
                     </Row>
                 </Grid>
+                <br />
+                <Divider className="paper-divider" />
+                <br />
+                <h2 style={GlobalStyle.formHeadingsh1}>First Aid </h2>
+                <br />
+                <Divider className="paper-divider" />
 
+                <Grid fluid>
+                    <Row>
+                        <Col md={6}>
 
+                            <Grid>
+                                <Row style={{ padding: '5px' }}>
+                                    <Col md={6}> Accident  </Col>
+                                    <Col md={6}> {incomingPatient.accident} </Col>
+                                </Row>
 
+                                <Row style={{ padding: '5px' }}>
+                                    <Col md={6}> Natural cause </Col>
+                                    <Col md={6}> {incomingPatient.naturalCase} </Col>
+                                </Row>
+
+                                <Row style={{ padding: '5px' }}>
+                                    <Col md={6}> Wound </Col>
+                                    <Col md={6}> {incomingPatient.wound} </Col>
+                                </Row>
+
+                                <Row style={{ padding: '5px' }}>
+                                    <Col md={6}> Comments </Col>
+                                    <Col md={6}> {incomingPatient.comments} </Col>
+                                </Row>
+
+                                {/* <Row style={{ padding: '5px' }}>
+                                    <Col md={6}> Height </Col>
+                                    <Col md={6}> {incomingPatient.height} </Col>
+                                </Row>
+
+                                <Row style={{ padding: '5px' }}>
+                                    <Col md={6}> Blood Group </Col>
+                                    <Col md={6}> {incomingPatient.bloodGroup} </Col>
+                                </Row> */}
+                            </Grid>
+
+                        </Col>
+
+                        
+                    </Row>
+                </Grid>
 
             </form>
         );

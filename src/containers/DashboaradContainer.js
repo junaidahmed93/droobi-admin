@@ -1,221 +1,210 @@
 import React, { Component } from 'react';
-import Divider from 'material-ui/Divider';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
-import LeftArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
-import RightArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
-import SelectField from 'material-ui/SelectField';
-import { Link } from 'react-router';
 import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
-import Popover from 'material-ui/Popover';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
-import { Grid, Row, Col } from 'react-flexbox-grid';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import BookingCharts from '../../components/booking/BookingCharts';
-import GlobalStyle from '../utils/Styles';
-import * as actions from '../actions/IncomingPatientAction';
-import IncomingPatient from '../components/booking/IncomingPatient';
-import { nextBookings, previousBookings, startRecord, endRecord, totalRecords } from '../utils/Pagination';
-import { patientData } from '../utils/data';
+import { bindActionCreators } from 'redux';
+/* eslint no-unused-vars: "off" */
+import { Doughnut } from 'react-chartjs-2';
+import { XAxis, YAxis, LineChart, Line, Tooltip, Legend, PieChart, Pie, CartesianGrid, Label, BarChart, Bar } from 'recharts';
+import DriporterMap from '../components/map/DriporterMap';
+import * as actions from '../actions/DashboardActions';
+import AverageStats from '../components/dashboard/AverageStats';
 
-class DashboardContainer extends Component {
+const style = {
+  width: '98%', 
+  textAlign: 'center',
+  display: 'inline-block',
+  margin: '0.5rem 1rem',
+  padding: '5px',
+};
+
+const shortSheets = {
+  width: '35%',
+  textAlign: 'center',
+  display: 'inline-block',
+  margin: '1rem 1rem',
+};
+
+class DashboaradContainer extends Component {
   constructor(props) {
     super(props);
-    this.onSearchChanged = this.onSearchChanged.bind(this);
-    this.nextButton = this.nextButton.bind(this);
-    this.previousButton = this.previousButton.bind(this);
-    this.state = {
-      shownRecords: [],
-      storedRecords: [],
-      currentRowCount: 10,
-      startSearch: false,
-      open: false,
-      showSearchbar: false,
-      showFilterBar: false,
-      showTagBar: false,
-      value: 1,
-      filteredValues: ['1', '2', '3', '4', '5'],
-      selectedValue: '',
-    };
-    this.searchedRecords = [];
-    this.startingNextCount = 0;
-    this.currentPageNumber = -1;
-    this.interval = () => { };
+    this.searchedArea = '';
+    this.interval = '';
+    this.data = [];
   }
 
 
   componentDidMount() {
-    this.props.actions.getAllIncomingPatients();
-    this.interval = setInterval(()=>{
-      this.props.actions.getAllIncomingPatients();
-    },1000)
-    // this.refreshBooking();
-    // this.setState({shownRecords: patientData });
+    // this.interval = setInterval(() => {
+    //   this.props.actions.getDriportersLocation();
+    // }, 10000);
   }
 
-  componentWillReceiveProps(nextProps, nextState) {
-    this.setState({
-      // shownRecords: nextProps.bookings,
-      // storedRecords: nextProps.bookings,
-    });
-    
-    setTimeout(() => {
-      let endCount;
-      let startCount;
-      if (this.currentPageNumber > 0) {
-        console.log('IF')
-        startCount = this.currentPageNumber;
-        endCount = startCount + 10;
-      }
-      else {
-        console.log('Else')
-        startCount = 0;
-        endCount = this.state.currentRowCount;
-      }
-      this.setState({
-        shownRecords: nextProps.bookings.slice(startCount, endCount),
-        storedRecords: nextProps.bookings,
-      });
-    }, 1);
+  componentWillReceiveProps(nextProps) {
+    console.log('nextProps', nextProps);
   }
-  
 
   componentWillUnmount() {
     clearInterval(this.interval);
   }
+  setValue = (key, value) => {
+    if (!(value === this.searchedArea)) {
+      let interval;
+      clearInterval(interval);
+      this.searchedArea = value;
+      interval = setInterval(() => {
+        this.props.actions.getDriportersLocation();
+      }, 30000);
+    }
+  }
 
-  onSearchChanged(object, value) {
-    this.searchedRecords = [];
-    if (value === '') {
-      this.refreshBooking();
-      this.setState({ shownRecords: this.state.storedRecords.slice(0, 10), startSearch: false });
-      this.searchedRecords = [];
-    } else {
-      console.log('CLEAR INTERVAL')
-      clearInterval(this.interval);
-      this.state.storedRecords.forEach((item) => {
-        if (item.userName.toLowerCase().search(value.toLowerCase()) !== -1) {
-          this.searchedRecords.push(item);
-        }
+  getRandomNumber() {
+    if (this.data && this.data.length && this.data.length > 0) {
+      return this.data;
+    }
+
+    for (let i = 0; i < 10; i++) {
+      this.data.push({
+        name: i, 'Zone A': Math.floor(Math.random() * (9000 - 1000 + 1)) + 1000, 'Zone B': Math.floor(Math.random() * (9000 - 1000 + 1)) + 1000, 'Zone C': Math.floor(Math.random() * (9000 - 1000 + 1)) + 1000,
       });
-      this.startingNextCount = 0;
-      this.setState({ shownRecords: this.searchedRecords, startSearch: true });
     }
+    return this.data;
   }
-
-  handleChange = (event, index, value) => this.setState({ value });
-
-  handleClick = (event) => {
-    // This prevents ghost click.
-    event.preventDefault();
-
-    this.setState({
-      open: true,
-      anchorEl: event.currentTarget,
-    });
-  };
-
-  handleRequestClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
-
-  handlerSearch = () => {
-    this.setState({ showSearchbar: true, showFilterBar: false, showTagBar: false })
-  }
-
-  handlerFilter = () => {
-    this.setState({ showSearchbar: false, showFilterBar: true, showTagBar: false })
-  }
-
-  handlerTag = () => {
-    this.setState({ showSearchbar: false, showFilterBar: false, showTagBar: true })
-  }
-
-  refreshBooking() {
-    this.interval = setInterval(() => {
-      console.log('startingNextCount', this.startingNextCount);
-      this.currentPageNumber = this.startingNextCount;
-      // this.props.actions.getAllBookings();
-    }, 10000);
-  }
-
-  nextButton() {
-    const nextRecords = nextBookings(this.state, this.startingNextCount);
-    if (nextRecords) {
-      this.startingNextCount = nextRecords;
-      this.setState({ shownRecords: this.state.storedRecords.slice(nextRecords, nextRecords + 10) });
-    }
-  }
-
-  previousButton() {
-    const previousRecords = previousBookings(this.state, this.startingNextCount);
-    if (!(previousRecords < 0)) {
-      this.startingNextCount = previousRecords;
-      this.setState({ shownRecords: this.state.storedRecords.slice(previousRecords, previousRecords + 10) });
-    }
-  }
-
-  handleChange = (event, index, values) => this.setState({ values });
-
- 
 
   render() {
-    const { values, selectedValue, filteredValues } = this.state;
-    return (
-      <div id="vehicleContainer">
-        {/* <Paper style={GlobalStyle.containerPaperStyle} zDepth={0}>
-          <BookingCharts />
-        </Paper> */}
-        <Paper style={GlobalStyle.containerPaperStyle} zDepth={0}>
-          <Grid fluid className="container-no-padding">
-            <Row between="xs">
-              <Col xs={4} style={GlobalStyle.containerHeader}>
-                <h2 className="paper-title">Incoming Patients</h2>
-                <br />
-              </Col>
-              <Col xs={8} >
-              </Col>
-            </Row>
-          </Grid>
-          <Divider className="paper-divider m-top-bottom-07em bold-hr" />
-          <IncomingPatient rows={this.state.shownRecords} />
+    const data01 = [
+      { name: 'Group A', value: 400 },
+      { name: 'Group B', value: 300 },
+      { name: 'Group C', value: 300 },
+      { name: 'Group D', value: 200 },
+    ];
+    const data02 = [
+      { name: 'A1', value: 100 },
+      { name: 'A2', value: 300 },
+      { name: 'B1', value: 100 },
+      { name: 'B2', value: 80 },
+      { name: 'B3', value: 40 },
+      { name: 'B4', value: 30 },
+      { name: 'B5', value: 50 },
+      { name: 'C1', value: 100 },
+      { name: 'C2', value: 200 },
+      { name: 'D1', value: 150 },
+      { name: 'D2', value: 50 }];
 
-          <div className="flex-container-pagination Pagination">
-            <div className="pagination-child pagination-child-count">
-              <span style={GlobalStyle.tablePageCount}>
-                {startRecord(this.state, this.startingNextCount)} - {endRecord(this.state, this.startingNextCount)} of {totalRecords(this.state)}
-              </span>
+    // const data03 = [
+    //   { name: 'Page A', uv: 4000, pv: 9000 },
+    //   { name: 'Page B', uv: 3000, pv: 7222 },
+    //   { name: 'Page C', uv: 2000, pv: 6222 },
+    //   { name: 'Page D', uv: 1223, pv: 5400 },
+    //   { name: 'Page E', uv: 1890, pv: 3200 },
+    //   { name: 'Page F', uv: 2390, pv: 2500 },
+    //   { name: 'Page G', uv: 3490, pv: 1209 },
+    // ];
+
+    const data = [
+      {
+        name: 'Zone A', uv: 4000, female: 2400, male: 2400,
+      },
+      {
+        name: 'Zone B', uv: 3000, female: 1398, male: 2210,
+      },
+      {
+        name: 'Zone C', uv: 2000, female: 9800, male: 2290,
+      },
+      {
+        name: 'Zone D', uv: 2780, female: 3908, male: 2000,
+      },
+      {
+        name: 'Zone E', uv: 1890, female: 4800, male: 2181,
+      },
+      {
+        name: 'Zone F', uv: 2390, female: 3800, male: 2500,
+      },
+      {
+        name: 'Zone G', uv: 3490, female: 4300, male: 2100,
+      },
+    ];
+
+    const getPath = (x, y, width, height) => `M${x},${y + height}
+                    C${x + width / 3},${y + height} ${x + width / 2},${y + height / 3} ${x + width / 2}, ${y}
+                    C${x + width / 2},${y + height / 3} ${x + 2 * width / 3},${y + height} ${x + width}, ${y + height}
+                    Z`;
+
+    const TriangleBar = (props) => {
+      const {
+        fill, x, y, width, height,
+      } = props;
+
+      return <path d={getPath(x, y, width, height)} stroke="none" fill={fill} />;
+    };
+
+    return (
+      <div className="dashboardContainer">
+        <div style={{ display: 'flex' }}>
+          <Paper style={shortSheets} zDepth={0} >
+            <div style={{ padding: '20px' }}>
+              <LineChart
+                width={350}
+                height={350}
+                data={this.getRandomNumber()}
+              >
+                {/* <CartesianGrid strokeDasharray="3 3" /> */}
+                <XAxis dataKey="name" label={{ value: '', position: 'insideBottom' }} />
+                <YAxis label={{ value: 'Patient Treated', angle: -90, position: 'insideBottomLeft' }} />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="Zone A" stroke="red" />
+                <Line type="monotone" dataKey="Zone B" stroke="blue" />
+                <Line type="monotone" dataKey="Zone C" stroke="green" />
+              </LineChart>
             </div>
-            <div className="pagination-child">
-              <div className="pagination-left-button"><LeftArrow style={GlobalStyle.paginationButtons} onClick={this.previousButton} /></div>
-            </div>
-            <div className="pagination-child">
-              <div className="pagination-right-button"><RightArrow style={GlobalStyle.paginationButtons} onClick={this.nextButton} /></div>
-            </div>
-          </div>
-          <div style={{ clear: 'both' }} />
+
+          </Paper>
+          <Paper style={shortSheets} zDepth={0} >
+            <PieChart width={350} height={350}>
+              <Pie data={data01} cx={200} cy={200} outerRadius={60} fill="#8884d8" />
+              <Pie data={data02} cx={200} cy={200} innerRadius={70} outerRadius={90} fill="#82ca9d" label />
+              <Label value="Pages of my website" position="insideBottom" />
+            </PieChart>
+            <span>Total Treatment</span>
+          </Paper>
+          <Paper style={shortSheets} zDepth={0} >
+            <BarChart
+              width={350}
+              height={350}
+              data={data}
+              margin={{
+                top: 20, right: 30, left: 20, bottom: 5,
+              }}
+            >
+              <XAxis dataKey="name" />
+              <YAxis label={{ value: 'Disease per zone', angle: -90, position: 'insideBottomLeft' }} />
+              <CartesianGrid strokeDasharray="3 3" />
+              <Bar dataKey="female" fill="#8884d8" shape={<TriangleBar />} label />
+            </BarChart>
+          </Paper>
+        </div>
+        <Paper style={style} zDepth={0}>
+          <AverageStats />
         </Paper>
+       
       </div>
     );
   }
 }
 
-
 function mapStateToProps(state) {
   return {
-    bookings: state.IncomingPatientReducer.incomingPatient,
+    driporterLocations: state.DashboardReducer.driporterLocations,
+    driporterLocationsSuccess: state.DashboardReducer.driporterLocationsSuccess,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(actions, dispatch),
+
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(DashboaradContainer);
+// export default DashboaradContainer;

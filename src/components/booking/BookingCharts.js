@@ -36,7 +36,7 @@ class BookingCharts extends Component {
           >
             {/* <CartesianGrid strokeDasharray="3 3" /> */}
             <XAxis dataKey="name" label={{ value: 'Days', position: 'insideBottom' }} />
-            <YAxis label={{ value: 'Complete Bookings', angle: -90, position: 'insideBottomLeft' }} />
+            <YAxis label={{ value: 'Patient Treated', angle: -90, position: 'insideBottomLeft' }} />
             <Tooltip />
             <Legend />
             <Line type="monotone" dataKey="Zone A" stroke="red" />

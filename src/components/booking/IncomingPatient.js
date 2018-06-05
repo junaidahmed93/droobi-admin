@@ -17,7 +17,7 @@ export default class BookingTable extends React.Component {
 
   handleCellClick(rowNumber, columnNumber, evt) {
     const id = evt.target.dataset.uid;
-    browserHistory.push(`/home/admin/patient/${id}`);
+    browserHistory.push(`/home/admin/patient-history/${id}`);
   }
 
   getColor(initialValue, updateValue) {

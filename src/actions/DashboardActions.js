@@ -1,5 +1,5 @@
 import CONSTANTS from '../constants/actionConstants';
-import * as NotificationActions from './NotificationActions';
+// import * as NotificationActions from './NotificationActions';
 import DashboardSource from '../sources/DashboardSource';
 
 export function getDriporterLocationSuccess(driporterLocations) {
@@ -30,7 +30,7 @@ export function getDriportersLocation() {
       .catch((err) => {
         dispatch(getDriporterLocationFail());
         // dispatch(loaderActions.loaderStop());
-        dispatch(NotificationActions.showNotification(err.message));
+        // dispatch(NotificationActions.showNotification(err.message));
         console.log('addUserActions error', err);
       });
 }
