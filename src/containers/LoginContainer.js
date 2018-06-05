@@ -125,6 +125,9 @@ class LoginContainer extends Component {
       <div>
         <Grid fluid className="loginGrid">
           <Row className="loginGridRow">
+          <Col xs={0} sm={6} md={7} lg={8}>
+              <div className="MainLogo" />
+            </Col>
             <Col xs={12} sm={6} md={5} lg={4} className="loginGridColLeft">
 
               {this.state.passwordReset ?
@@ -140,9 +143,7 @@ class LoginContainer extends Component {
                 <Login login={this.handleLogin} enableForgetDialog={this.enableForgetDialog} />}
 
             </Col>
-            <Col xs={0} sm={6} md={7} lg={8}>
-              <div className="MainLogo" />
-            </Col>
+            
           </Row>
         </Grid>
         <LoaderIndicator />

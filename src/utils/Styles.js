@@ -16,6 +16,15 @@ const GlobalStyle = {
     textAlign: 'center',
   },
 
+  tableHighlightedRowCell: {
+    height: '45px',
+    paddingLeft: '25px',
+    paddingTop: '5px',
+    paddingBottom: '5px',
+    // border: '1px solid red',
+    textAlign: 'center',
+  },
+
   tableRowSpacing: {
     height: '15px',
     paddingLeft: '5px',

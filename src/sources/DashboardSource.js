@@ -30,37 +30,7 @@ const DashboardSource = {
                   driporterLocationInfo.push(t);
                 }
 
-                // let temp;
-                // const data4 = JSON.parse(localStorage.getItem('location'));
-                // console.log('data4', data4);
-                // if (data4) {
-                //   let lt = data4[0].lat;
-                //   let lg = data4[0].lng;
-                //   console.log('lt------', lt);
-                //   console.log('gt-------', lg);
-                //   lt = Number(lt) + 0.000150;
-                //   lg = Number(lg) - 0.000300;
-
-                //   let lt1 = data4[0].lat;
-                //   let lg1 = data4[0].lng;
-                //   console.log('lt------', lt1);
-                //   console.log('gt-------', lg1);
-                //   lt1 = Number(lt1) + 0.000450;
-                //   lg1 = Number(lg1) - 0.000900;
-                //   temp = [
-                //     { lat: lt, lng: lg },
-                //     { lat: lt1, lng: lg1 },
-                //   ];
-                //   localStorage.setItem('location', JSON.stringify(temp));
-                // } else {
-                //   temp = [
-                //     { lat: 25.202505, lng: 55.275397 },
-                //     { lat: 25.202711, lng: 55.275048 },
-                //   ];
-                //   localStorage.setItem('location', JSON.stringify(temp));
-                // }
-
-                // console.log('final push', temp);
+               
                 resolve({ requestedResult: true, data: driporterLocationInfo });
               }
               if (responseData && responseData.success === false) {

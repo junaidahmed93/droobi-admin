@@ -31,8 +31,6 @@ export default class BookingEditForm extends React.Component {
         let heartRate = (Number(data.heartRate) + (random));
         let finalDate = Object.assign({}, data, { heartRate, name: 'pk' });
         this.color = previousRate > heartRate ? 'green' : 'red';
-        console.log(' previousRate previousRate ', previousRate);
-        console.log(' heartRate heartRate', heartRate);
         this.setState({ incomingPatient: finalDate })
     }
     componentWillReceiveProps(nextProps) {
@@ -41,7 +39,6 @@ export default class BookingEditForm extends React.Component {
     render() {
         const { setValue, editMode } = this.props;
         const { incomingPatient } = this.state;
-        console.log("booking**********************", incomingPatient)
         return (
             <form className="form-validation">
                 <h2 style={GlobalStyle.formHeadingsh1}>Patient Details: <span style={{ color: '#27BCBD' }}>{incomingPatient.id}-- Asad</span></h2>

@@ -35,12 +35,12 @@ canvas {
 }
 
 .loginGridColLeft {
-  background-image: url("./assets/images/login-screen.jpg");
+  background-image: url("./assets/images/droobi-health.jpg");
   background-repeat: no-repeat;
 }
 .MainLogo {
-  background-image: url("./assets/images/ic_logo.png");
-  background-repeat: no-repeat;
+  background-image: url("./assets/images/droobi_logo.svg");
+  background-repeat: no-repeat; 
   height: 192px;
   width: 385px;
   margin: 37vh auto;

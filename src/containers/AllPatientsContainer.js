@@ -194,6 +194,7 @@ class BookingContainer extends Component {
             <Row between="xs">
               <Col xs={4} style={GlobalStyle.containerHeader}>
                 <h2 className="paper-title">All Patient Details</h2>
+                <br />
               </Col>
               <Col xs={8} >
               </Col>

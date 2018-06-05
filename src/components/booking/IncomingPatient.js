@@ -12,11 +12,19 @@ export default class BookingTable extends React.Component {
       selectable: false,
       fixedHeader: true,
     };
+    this.color = 'green';
   }
 
   handleCellClick(rowNumber, columnNumber, evt) {
     const id = evt.target.dataset.uid;
     browserHistory.push(`/home/admin/patient/${id}`);
+  }
+
+  getColor(initialValue, updateValue) {
+    if (initialValue > updateValue) {
+      return this.color = 'red';
+    }
+    return this.color;
   }
 
   render() {
@@ -29,8 +37,8 @@ export default class BookingTable extends React.Component {
         <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.age}</TableRowColumn>
         <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.disease}</TableRowColumn>
         <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.ETA}</TableRowColumn>
-        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.ETA}</TableRowColumn>
-        
+        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}> <span style={{ color: `${data.color}` }}>{data.heartRate}bpm </span></TableRowColumn>
+
       </TableRow>
 
     ));
@@ -43,7 +51,7 @@ export default class BookingTable extends React.Component {
             <TableHeaderColumn style={GlobalStyle.tableRowCell}>Age</TableHeaderColumn>
             <TableHeaderColumn style={GlobalStyle.tableRowCell}>Disease</TableHeaderColumn>
             <TableHeaderColumn style={GlobalStyle.tableRowCell}>ETA</TableHeaderColumn>
-            <TableHeaderColumn style={GlobalStyle.tableRowCell}>First Ad</TableHeaderColumn>
+            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Heart Rate</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={this.state.showCheckboxes} >

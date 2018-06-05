@@ -49,16 +49,19 @@ class DashboardContainer extends Component {
 
   componentDidMount() {
     this.props.actions.getAllIncomingPatients();
-    this.refreshBooking();
+    this.interval = setInterval(()=>{
+      this.props.actions.getAllIncomingPatients();
+    },1000)
+    // this.refreshBooking();
     // this.setState({shownRecords: patientData });
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log('nextProps-------------------------',nextProps)
+  componentWillReceiveProps(nextProps, nextState) {
     this.setState({
       // shownRecords: nextProps.bookings,
       // storedRecords: nextProps.bookings,
     });
+    
     setTimeout(() => {
       let endCount;
       let startCount;
@@ -78,6 +81,7 @@ class DashboardContainer extends Component {
       });
     }, 1);
   }
+  
 
   componentWillUnmount() {
     clearInterval(this.interval);
@@ -172,6 +176,7 @@ class DashboardContainer extends Component {
             <Row between="xs">
               <Col xs={4} style={GlobalStyle.containerHeader}>
                 <h2 className="paper-title">Incoming Patients</h2>
+                <br />
               </Col>
               <Col xs={8} >
               </Col>

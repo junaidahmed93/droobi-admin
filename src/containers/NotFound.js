@@ -10,7 +10,7 @@ class NotFoundContainer extends Component {
         >
           <h1>Ops! Page not found</h1>
         </div>
-        <div className="not-found-container" />
+        {/* <div className="not-found-container" /> */}
       </div>
 
     );
