@@ -33,7 +33,7 @@ class App extends Component {
     }
     if (nextState.location.pathname === '/home' || nextState.location.pathname === '/home/' || nextState.location.pathname === '/home/hotel' || nextState.location.pathname === '/home/hotel/') {
       replace({
-        pathname: '/home/admin/dashboard',
+        pathname: '/home/admin/main',
       });
     }
   }

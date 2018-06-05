@@ -33,7 +33,7 @@ class LoginContainer extends Component {
 
   componentWillMount() {
     if (this.props && this.props.user && JSON.stringify(this.props.user) !== '{}') {
-      browserHistory.push('/home/admin/dashboard');
+      browserHistory.push('/home/admin/main');
     }
   }
 
@@ -46,7 +46,7 @@ class LoginContainer extends Component {
         browserHistory.push('/home/remote');
       }
       if (nextProps.user.role.roleType === 'admin') {
-        browserHistory.push('/home/admin/dashboard');
+        browserHistory.push('/home/admin/main');
       }
     }
     if (nextProps && nextProps.error && nextProps.error !== '') {

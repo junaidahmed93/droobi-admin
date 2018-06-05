@@ -153,7 +153,7 @@ class PatientContainer extends React.Component {
         <Grid fluid style={GlobalStyle.containerHeader}>
           <Row>
             <Col xsOffset={8} md={4}>
-              <Link to="/home/admin/dashboard">
+              <Link to="/home/admin/main">
                 <FlatButton label="Back" className="add-button add-button-back float-right" />
               </Link>
              

@@ -114,7 +114,7 @@ const ProfileSource = {
             const responseData = JSON.parse(response.text);
             if (responseData && responseData.success === true) {
               console.log('58-----', response);
-              browserHistory.push('/home/admin/dashboard');
+              browserHistory.push('/home/admin/main');
               resolve({ requestedResult: true, data: responseData.data });
             }
             if (responseData && responseData.success === false) {
