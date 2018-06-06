@@ -64,7 +64,7 @@ class MainComponent extends Component {
           onChange={({ idle }) => console.log({ idle })}
           render={({ idle }) => {
             if (idle) {
-              this.props.LogoutActions.logOutUser()
+              this.props.LogoutActions.logOutUser();
               return (<h1>Session lost</h1>);
             }
             return null;
@@ -94,7 +94,7 @@ function mapStateToProps(state) {
   return {
     user: state.loginReducer.user,
     error: state.loginReducer.error,
-   
+
   };
 }
 

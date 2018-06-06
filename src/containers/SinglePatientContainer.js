@@ -73,7 +73,7 @@ class PatientContainer extends React.Component {
   }
 
   assignDr = () => {
-    this.setState({ assigned: true })
+    this.setState({ assigned: true });
   }
 
   submit = () => {
@@ -108,7 +108,6 @@ class PatientContainer extends React.Component {
   }
 
   render() {
-
     const data = [
       { name: '10', uv: 4000, pv: 9000 },
       { name: '20', uv: 3000, pv: 7222 },
@@ -144,13 +143,20 @@ class PatientContainer extends React.Component {
       <div id="vehicleContainer">
         <Paper style={GlobalStyle.containerPaperStyle} zDepth={0}>
 
-          <LineChart width={1200} height={200} data={data} syncId="anyId"
-            margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+          <LineChart
+            width={1200}
+            height={200}
+            data={data}
+            syncId="anyId"
+            margin={{
+ top: 10, right: 30, left: 0, bottom: 0,
+}}
+          >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis />
             <Tooltip />
-            <Line type='monotone' dataKey='uv' stroke='#8884d8' fill='#8884d8' />
+            <Line type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
           </LineChart>
 
 
@@ -159,7 +165,7 @@ class PatientContainer extends React.Component {
           <Grid fluid>
             <Row>
               <Col md={5}>
-                <h2 style={GlobalStyle.formHeadingsh1}>Patient Details: <span style={{ color: '#27BCBD' }}></span></h2>
+                <h2 style={GlobalStyle.formHeadingsh1}>Patient Details: <span style={{ color: '#27BCBD' }} /></h2>
               </Col>
               <Col md={7}>
                 {/* <Link to="">
@@ -182,11 +188,10 @@ class PatientContainer extends React.Component {
                         <MenuItem value={5} primaryText="Dr. Danish" />
                       </SelectField>
                     </Col>
-                    <Col md={1}>
-                    </Col>
+                    <Col md={1} />
                     <Col md={3} >
                       <SelectField
-                        style={{ width: '200px'}}
+                        style={{ width: '200px' }}
                         floatingLabelText="Emg Department"
                         className="search-text-field"
                         value={this.state.value}
@@ -199,10 +204,9 @@ class PatientContainer extends React.Component {
                         <MenuItem value={5} primaryText="ER-5" />
                       </SelectField>
                     </Col>
-                     <Col md={1}>
-                    </Col>
+                    <Col md={1} />
                     <Col md={3}>
-                    <FlatButton onClick={this.assignDr} label={this.state.assigned === true ? 'Assigned' : 'Assign Docter'} className="add-button-on-header float-right" />
+                      <FlatButton onClick={this.assignDr} label={this.state.assigned === true ? 'Assigned' : 'Assign Docter'} className="add-button-on-header float-right" />
                     </Col>
                   </Row>
                 </div>

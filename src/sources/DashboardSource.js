@@ -30,7 +30,7 @@ const DashboardSource = {
                   driporterLocationInfo.push(t);
                 }
 
-               
+
                 resolve({ requestedResult: true, data: driporterLocationInfo });
               }
               if (responseData && responseData.success === false) {

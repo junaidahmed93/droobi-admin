@@ -24,7 +24,7 @@ WebFont.load({
 
 ReactDOM.render(
   // <ErrorBoundary>
-    <App />
+  <App />
   // </ErrorBoundary>
   , document.getElementById('root'),
 );

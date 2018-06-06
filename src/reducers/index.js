@@ -6,9 +6,9 @@ import DashboardReducer from './DashboardReducer';
 import IncomingPatientReducer from './IncomingPatientReducer';
 
 export default combineReducers({
-  loginReducer, 
-  loaderReducer, 
+  loginReducer,
+  loaderReducer,
   ForgetPasswordReducer,
-  DashboardReducer,  
+  DashboardReducer,
   IncomingPatientReducer,
 });

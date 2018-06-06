@@ -36,7 +36,7 @@ export default class BookingTable extends React.Component {
         <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.gender}</TableRowColumn>
         <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.age}</TableRowColumn>
         <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.disease}</TableRowColumn>
-        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.ETA}</TableRowColumn>
+        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.ETA}min</TableRowColumn>
         <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}> <span style={{ color: `${data.color}` }}>{data.heartRate}bpm </span></TableRowColumn>
 
       </TableRow>

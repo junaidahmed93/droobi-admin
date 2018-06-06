@@ -125,7 +125,7 @@ class LoginContainer extends Component {
       <div>
         <Grid fluid className="loginGrid">
           <Row className="loginGridRow">
-          <Col xs={0} sm={6} md={7} lg={8}>
+            <Col xs={0} sm={6} md={7} lg={8}>
               <div className="MainLogo" />
             </Col>
             <Col xs={12} sm={6} md={5} lg={4} className="loginGridColLeft">
@@ -143,7 +143,7 @@ class LoginContainer extends Component {
                 <Login login={this.handleLogin} enableForgetDialog={this.enableForgetDialog} />}
 
             </Col>
-            
+
           </Row>
         </Grid>
         <LoaderIndicator />
@@ -168,7 +168,7 @@ function mapStateToProps(state) {
     codeVerify: state.ForgetPasswordReducer.codeVerify,
     resetToken: state.ForgetPasswordReducer.resetToken,
     passwordChanged: state.ForgetPasswordReducer.passwordChanged,
-  
+
   };
 }
 

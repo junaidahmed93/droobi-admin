@@ -70,12 +70,12 @@ class App extends Component {
                   <Route path="admin" component={AdminContainer} onEnter={this.mustAdmin}>
                     <Route path="main" component={Main} />
                     <Route path="dashboard" component={DashboaradContainer} />
-            
+
                     <Route path="config" component={ConfigContainer} />
                     <Route path="ambulance" component={AmbulanceContainer} />
                     <Route path="patient-enroute" component={EnrouteContainer} />
                     <Route path="patient-history" component={AllPatientsContainer} />
-                    <Route path="patient-history/:id" component={SinglePatientContainer} />                    
+                    <Route path="patient-history/:id" component={SinglePatientContainer} />
                   </Route>
                 </Route>
                 <Route path="*" component={NotFound} />

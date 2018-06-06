@@ -23,9 +23,9 @@ const DriporterMap = compose(
       const refs = {};
 
       this.setState({
-        bounds: null, 
+        bounds: null,
         center: {
-          lat: 25.28891, lng: 51.0479856,
+          lat: 25.2845344, lng: 51.5191851,
         },
         markers: [],
         onMapMounted: (ref) => {
@@ -85,7 +85,7 @@ const DriporterMap = compose(
   (
     <GoogleMap
       ref={props.onMapMounted}
-      defaultZoom={10}
+      defaultZoom={13}
       center={props.center}
       onBoundsChanged={props.onBoundsChanged}
     >
@@ -97,7 +97,7 @@ const DriporterMap = compose(
       >
         <input
           type="text"
-          placeholder="Customer's Near landmark"
+          placeholder="Near landmark"
           style={{
             boxSizing: 'border-box',
             border: '1px solid transparent',
@@ -113,34 +113,30 @@ const DriporterMap = compose(
           }}
         />
       </SearchBox>
-      
+
       <Marker
-          position={{lat: 25.28591, lng: 51.0479856}}
-          onClick={() => props.onToggleOpen()}
-          icon={ambulanceImg}
-        >
-        </Marker>
+        position={{ lat: 25.2845344, lng: 51.5191851 }}
+        onClick={() => props.onToggleOpen()}
+        icon={ambulanceImg}
+      />
 
-        <Marker 
-          position={{lat: 25.3690056, lng: 51.174759}}
-          onClick={() => props.onToggleOpen()}
-          icon={ambulanceImg}
-        >
-        </Marker>
+      <Marker
+        position={{ lat: 25.287607, lng: 51.5229443 }}
+        onClick={() => props.onToggleOpen()}
+        icon={ambulanceImg}
+      />
 
-        <Marker 
-          position={{lat: 25.4677928, lng: 51.1493983}}
-          onClick={() => props.onToggleOpen()}
-          icon={ambulanceImg}
-        >
-        </Marker>
+      <Marker
+        position={{ lat: 25.279877, lng: 51.5327023 }}
+        onClick={() => props.onToggleOpen()}
+        icon={ambulanceImg}
+      />
 
-        <Marker
-          position={{lat: 25.15891, lng: 51.0479856}}
-          onClick={() => props.onToggleOpen()}
-          icon={ambulanceImg}
-        >
-        </Marker>
+      <Marker
+        position={{ lat: 25.276869, lng: 51.5260033 }}
+        onClick={() => props.onToggleOpen()}
+        icon={ambulanceImg}
+      />
       {props && props.driporterLocations ? props.driporterLocations.map((data, index) => (
         <Marker
           position={data}

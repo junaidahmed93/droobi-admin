@@ -24,7 +24,7 @@ export default class BookingTable extends React.Component {
       <TableRow style={GlobalStyle.tableRowSpacing} key={data.id} className="table-row-style">
         {/* <TableRowColumn data-uid={data.id}>{data.dropoffDate}</TableRowColumn>
                     <TableRowColumn data-uid={data.id}>02:20Pm</TableRowColumn> */}
-        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell} style={{ textOverflow: 'clip', width:'20px !important' }}>{data.referenceId}</TableRowColumn>
+        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell} style={{ textOverflow: 'clip', width: '20px !important' }}>{data.referenceId}</TableRowColumn>
         <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.batchId}</TableRowColumn>
         <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.flightNumber}</TableRowColumn>
         <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.userName}</TableRowColumn>

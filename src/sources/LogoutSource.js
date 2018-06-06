@@ -8,7 +8,6 @@ const LogoutSource = {
   requestLogOutSource() {
     return new Promise((resolve, reject) => {
       resolve({ requestedResult: true });
-    
     });
   },
 };

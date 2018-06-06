@@ -19,6 +19,7 @@ import GlobalStyle from '../utils/Styles';
 import * as actions from '../actions/IncomingPatientAction';
 import AllPatientTable from '../components/booking/AllPatientTable';
 import { nextBookings, previousBookings, startRecord, endRecord, totalRecords } from '../utils/Pagination';
+
 const names = [
   'Oliver Hansen',
   'Van Henry',
@@ -64,7 +65,7 @@ class BookingContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps-------------------------',nextProps)
+    console.log('nextProps-------------------------', nextProps);
     this.setState({
       // shownRecords: nextProps.bookings,
       // storedRecords: nextProps.bookings,
@@ -73,12 +74,11 @@ class BookingContainer extends Component {
       let endCount;
       let startCount;
       if (this.currentPageNumber > 0) {
-        console.log('IF')
+        console.log('IF');
         startCount = this.currentPageNumber;
         endCount = startCount + 10;
-      }
-      else {
-        console.log('Else')
+      } else {
+        console.log('Else');
         startCount = 0;
         endCount = this.state.currentRowCount;
       }
@@ -100,7 +100,7 @@ class BookingContainer extends Component {
       this.setState({ shownRecords: this.state.storedRecords.slice(0, 10), startSearch: false });
       this.searchedRecords = [];
     } else {
-      console.log('CLEAR INTERVAL')
+      console.log('CLEAR INTERVAL');
       clearInterval(this.interval);
       this.state.storedRecords.forEach((item) => {
         if (item.userName.toLowerCase().search(value.toLowerCase()) !== -1) {
@@ -131,15 +131,15 @@ class BookingContainer extends Component {
   };
 
   handlerSearch = () => {
-    this.setState({ showSearchbar: true, showFilterBar: false, showTagBar: false })
+    this.setState({ showSearchbar: true, showFilterBar: false, showTagBar: false });
   }
 
   handlerFilter = () => {
-    this.setState({ showSearchbar: false, showFilterBar: true, showTagBar: false })
+    this.setState({ showSearchbar: false, showFilterBar: true, showTagBar: false });
   }
 
   handlerTag = () => {
-    this.setState({ showSearchbar: false, showFilterBar: false, showTagBar: true })
+    this.setState({ showSearchbar: false, showFilterBar: false, showTagBar: true });
   }
 
   // refreshBooking() {
@@ -169,17 +169,16 @@ class BookingContainer extends Component {
   handleChange = (event, index, values) => this.setState({ values });
 
   menuItems(values) {
-    return names.map((name) => (
+    return names.map(name => (
       <MenuItem
         key={name}
-        insetChildren={true}
+        insetChildren
         checked={values && values.indexOf(name) > -1}
         value={name}
         primaryText={name}
       />
     ));
   }
-
 
 
   render() {
@@ -196,8 +195,7 @@ class BookingContainer extends Component {
                 <h2 className="paper-title">All Patient Details</h2>
                 <br />
               </Col>
-              <Col xs={8} >
-              </Col>
+              <Col xs={8} />
             </Row>
           </Grid>
           <Divider className="paper-divider m-top-bottom-07em bold-hr" />
@@ -226,7 +224,7 @@ class BookingContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-    bookings: state.IncomingPatientReducer.incomingPatient, 
+    bookings: state.IncomingPatientReducer.incomingPatient,
   };
 }
 

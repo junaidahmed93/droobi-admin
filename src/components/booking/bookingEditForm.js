@@ -146,7 +146,7 @@ export default class BookingEditForm extends React.Component {
               />
             </Col>
             <Col md={4}>
-            <InputEditBox
+              <InputEditBox
                 id="numberOfBags"
                 setValue={setValue}
                 prefilled={Number(booking.numberOfBags)}
@@ -210,7 +210,7 @@ export default class BookingEditForm extends React.Component {
                             />
                         </Col> */}
             <Col md={4}>
-            <InputEditBox
+              <InputEditBox
                 id="pickupAddress"
                 setValue={setValue}
                 prefilled={`${booking.completeAddress}`}
@@ -225,7 +225,7 @@ export default class BookingEditForm extends React.Component {
           </Row>
 
         </Grid>
-        <br/>                 
+        <br />
         <h2 className="paper-title heading-spacing">Dropoff Luggage Information</h2>
         <Divider className="paper-divider" />
         <Grid fluid>

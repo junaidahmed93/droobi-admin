@@ -23,13 +23,13 @@ import { nextBookings, previousBookings, startRecord, endRecord, totalRecords } 
 import { patientData } from '../utils/data';
 
 const style = {
-    width: '98%', 
-    height: '100%',
-    textAlign: 'center',
-    display: 'inline-block',
-    margin: '0.5rem 1rem',
-    padding: '5px',
-  };
+  width: '98%',
+  height: '100%',
+  textAlign: 'center',
+  display: 'inline-block',
+  margin: '0.5rem 1rem',
+  padding: '5px',
+};
 
 class AmbulanceContainer extends Component {
   constructor(props) {
@@ -58,7 +58,7 @@ class AmbulanceContainer extends Component {
 
 
   componentDidMount() {
-  
+
   }
 
   componentWillReceiveProps(nextProps, nextState) {
@@ -71,12 +71,11 @@ class AmbulanceContainer extends Component {
       let endCount;
       let startCount;
       if (this.currentPageNumber > 0) {
-        console.log('IF')
+        console.log('IF');
         startCount = this.currentPageNumber;
         endCount = startCount + 10;
-      }
-      else {
-        console.log('Else')
+      } else {
+        console.log('Else');
         startCount = 0;
         endCount = this.state.currentRowCount;
       }
@@ -99,7 +98,7 @@ class AmbulanceContainer extends Component {
       this.setState({ shownRecords: this.state.storedRecords.slice(0, 10), startSearch: false });
       this.searchedRecords = [];
     } else {
-      console.log('CLEAR INTERVAL')
+      console.log('CLEAR INTERVAL');
       clearInterval(this.interval);
       this.state.storedRecords.forEach((item) => {
         if (item.userName.toLowerCase().search(value.toLowerCase()) !== -1) {
@@ -130,15 +129,15 @@ class AmbulanceContainer extends Component {
   };
 
   handlerSearch = () => {
-    this.setState({ showSearchbar: true, showFilterBar: false, showTagBar: false })
+    this.setState({ showSearchbar: true, showFilterBar: false, showTagBar: false });
   }
 
   handlerFilter = () => {
-    this.setState({ showSearchbar: false, showFilterBar: true, showTagBar: false })
+    this.setState({ showSearchbar: false, showFilterBar: true, showTagBar: false });
   }
 
   handlerTag = () => {
-    this.setState({ showSearchbar: false, showFilterBar: false, showTagBar: true })
+    this.setState({ showSearchbar: false, showFilterBar: false, showTagBar: true });
   }
 
   refreshBooking() {
@@ -168,21 +167,20 @@ class AmbulanceContainer extends Component {
   handleChange = (event, index, values) => this.setState({ values });
 
 
-
   render() {
     const { values, selectedValue, filteredValues } = this.state;
     return (
       <div >
-       
-            <DriporterMap
-              isMarkerShown
-              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
-              loadingElement={<div style={{ height: '100% !important' }} />}
-              containerElement={<div style={{ height: '10vh !important' }} />}
-              mapElement={<div style={{ height: '10vh !important' }} />}
-              driporterLocations={this.props.driporterLocations}
-            />
-       
+
+        <DriporterMap
+          isMarkerShown
+          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
+          loadingElement={<div style={{ height: '100% !important' }} />}
+          containerElement={<div style={{ height: '10vh !important' }} />}
+          mapElement={<div style={{ height: '10vh !important' }} />}
+          driporterLocations={this.props.driporterLocations}
+        />
+
 
       </div>
     );

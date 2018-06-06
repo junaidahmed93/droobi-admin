@@ -51,7 +51,7 @@ class DashboardContainer extends Component {
     this.props.actions.getAllIncomingPatients();
     this.interval = setInterval(() => {
       this.props.actions.getAllIncomingPatients();
-    }, 1000)
+    }, 10000);
     // this.refreshBooking();
     // this.setState({shownRecords: patientData });
   }
@@ -66,17 +66,16 @@ class DashboardContainer extends Component {
       let endCount;
       let startCount;
       if (this.currentPageNumber > 0) {
-        console.log('IF')
+        console.log('IF');
         startCount = this.currentPageNumber;
         endCount = startCount + 10;
-      }
-      else {
-        console.log('Else')
+      } else {
+        console.log('Else');
         startCount = 0;
         endCount = this.state.currentRowCount;
       }
       this.setState({
-        shownRecords: nextProps.bookings.slice(startCount, endCount),
+        shownRecords: nextProps.bookings.slice(0, 3),
         storedRecords: nextProps.bookings,
       });
     }, 1);
@@ -94,7 +93,7 @@ class DashboardContainer extends Component {
       this.setState({ shownRecords: this.state.storedRecords.slice(0, 10), startSearch: false });
       this.searchedRecords = [];
     } else {
-      console.log('CLEAR INTERVAL')
+      console.log('CLEAR INTERVAL');
       clearInterval(this.interval);
       this.state.storedRecords.forEach((item) => {
         if (item.userName.toLowerCase().search(value.toLowerCase()) !== -1) {
@@ -125,15 +124,15 @@ class DashboardContainer extends Component {
   };
 
   handlerSearch = () => {
-    this.setState({ showSearchbar: true, showFilterBar: false, showTagBar: false })
+    this.setState({ showSearchbar: true, showFilterBar: false, showTagBar: false });
   }
 
   handlerFilter = () => {
-    this.setState({ showSearchbar: false, showFilterBar: true, showTagBar: false })
+    this.setState({ showSearchbar: false, showFilterBar: true, showTagBar: false });
   }
 
   handlerTag = () => {
-    this.setState({ showSearchbar: false, showFilterBar: false, showTagBar: true })
+    this.setState({ showSearchbar: false, showFilterBar: false, showTagBar: true });
   }
 
   refreshBooking() {
@@ -163,7 +162,6 @@ class DashboardContainer extends Component {
   handleChange = (event, index, values) => this.setState({ values });
 
 
-
   render() {
     const { values, selectedValue, filteredValues } = this.state;
     return (
@@ -177,10 +175,9 @@ class DashboardContainer extends Component {
               <Col xs={4} style={GlobalStyle.containerHeader}>
                 <h2 className="paper-title">Patients Enroute to Hospital</h2>
                 <h3>Real time data coming from Ambulance</h3>
-                
+
               </Col>
-              <Col xs={8} >
-              </Col>
+              <Col xs={8} />
             </Row>
           </Grid>
           <Divider className="paper-divider m-top-bottom-07em bold-hr" />

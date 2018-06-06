@@ -10,7 +10,7 @@ import * as actions from '../actions/DashboardActions';
 import AverageStats from '../components/dashboard/AverageStats';
 
 const style = {
-  width: '98%', 
+  width: '98%',
   textAlign: 'center',
   display: 'inline-block',
   margin: '0.5rem 1rem',
@@ -186,7 +186,7 @@ class DashboaradContainer extends Component {
         <Paper style={style} zDepth={0}>
           <AverageStats />
         </Paper>
-       
+
       </div>
     );
   }

@@ -123,7 +123,7 @@ class HeaderMenu extends Component {
         >
           <div >
             <img height="100px" width="100px" src={DroobiLogo} />
-            </div>
+          </div>
         </Menu.Item>
         {this.state.showAll ?
           <Menu
@@ -133,7 +133,7 @@ class HeaderMenu extends Component {
             className="menu-header border-transparent"
           >
             <Menu.Item name="Admin Portal" className="menu-header-list" active={activeItem === 'Admin'} onClick={(e) => { this.handleItemClick(e, 'Admin'); }} />
-    
+
           </Menu>
           : null}
         {this.state.showOnlyHotel ?
@@ -147,7 +147,7 @@ class HeaderMenu extends Component {
           </Menu>
           : null}
 
-     
+
         <Menu.Item
           position="right"
           style={{ paddingBottom: 0, marginRight: 30, cursor: 'pointer' }}
