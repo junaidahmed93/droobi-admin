@@ -101,7 +101,7 @@ class Login extends Component {
                 onChange={(e) => { this.onTextFieldChange(e, 'email'); }}
                 floatingLabelStyle={styles.floatingStyle}
                 hintText="Droobi Admin Email"
-                floatingLabelText="Droobi Admin ID"
+                floatingLabelText="Droobi Admin Email"
                 className="textField"
                 value={this.state.email}
                 autoComplete="new-password"

@@ -59,7 +59,7 @@ class AverageStats extends Component {
             />
           </div>
           <div className="avg-label">
-            5 mins 45 sec<span className="avg-span">Avg. Batch Time</span>
+            2 hours<span className="avg-span">Avg. Operate Time</span>
           </div>
         </div>
       </div>
