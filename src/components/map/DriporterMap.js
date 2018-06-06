@@ -8,6 +8,8 @@ import { InfoBox } from 'react-google-maps/lib/components/addons/InfoBox';
 import driInActiveImage from '../../assets/images/ic_vehicle.svg';
 import driActiveImage from '../../assets/images/ic_vehicleActive.svg';
 import statusMapping from '../../utils/StatusMapping';
+import ambulanceImg from '../../assets/images/ic_vacantCar.svg';
+
 
 const DriporterMap = compose(
   withProps({
@@ -23,7 +25,7 @@ const DriporterMap = compose(
       this.setState({
         bounds: null, 
         center: {
-          lat: 24.944045, lng: 67.012566,
+          lat: 25.28891, lng: 51.0479856,
         },
         markers: [],
         onMapMounted: (ref) => {
@@ -111,6 +113,34 @@ const DriporterMap = compose(
           }}
         />
       </SearchBox>
+      
+      <Marker
+          position={{lat: 25.28591, lng: 51.0479856}}
+          onClick={() => props.onToggleOpen()}
+          icon={ambulanceImg}
+        >
+        </Marker>
+
+        <Marker 
+          position={{lat: 25.3690056, lng: 51.174759}}
+          onClick={() => props.onToggleOpen()}
+          icon={ambulanceImg}
+        >
+        </Marker>
+
+        <Marker 
+          position={{lat: 25.4677928, lng: 51.1493983}}
+          onClick={() => props.onToggleOpen()}
+          icon={ambulanceImg}
+        >
+        </Marker>
+
+        <Marker
+          position={{lat: 25.15891, lng: 51.0479856}}
+          onClick={() => props.onToggleOpen()}
+          icon={ambulanceImg}
+        >
+        </Marker>
       {props && props.driporterLocations ? props.driporterLocations.map((data, index) => (
         <Marker
           position={data}
