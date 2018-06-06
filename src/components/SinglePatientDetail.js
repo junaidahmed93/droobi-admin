@@ -6,7 +6,7 @@ import InputEditBox from './shared/forms/InputEditBox';
 import { getAirportFromDeptLoc, getTerminalFromDeptLoc } from '../utils/Helpers';
 import GlobalStyle from '../utils/Styles';
 import statusMapping from '../utils/StatusMapping';
-
+import LinearProgress from 'material-ui/LinearProgress';
 export default class BookingEditForm extends React.Component {
     constructor(props) {
         super(props);
@@ -42,7 +42,9 @@ export default class BookingEditForm extends React.Component {
         return (
             <form className="form-validation">
                 <h2 style={GlobalStyle.formHeadingsh1}>Patient Details: <span style={{ color: '#27BCBD' }}>{incomingPatient.name}</span></h2>
-                <br/>
+                <br />
+                <span style={{ color: '#29ABE2', fontSize: '15px' }}>Data Receiving...</span>
+                <LinearProgress mode="indeterminate" />
                 <Divider className="paper-divider" />
                 <br />
                 <Grid fluid>
@@ -166,7 +168,7 @@ export default class BookingEditForm extends React.Component {
 
                         </Col>
 
-                        
+
                     </Row>
                 </Grid>
 
