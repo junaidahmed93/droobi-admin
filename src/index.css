@@ -1029,8 +1029,14 @@ tr.style-row td.action-cell{
 .search-text-field{
   margin-top: -17px !important;
   margin-right: 5px;
-  display: inline-block;
+  display: inline;
   /* padding-top: 11px; */
+}
+
+.search-text-field-2{
+   margin-top: -17px !important;
+  margin-right: 5px;
+  display: inline;
 }
 
 .flex-container-timeline {

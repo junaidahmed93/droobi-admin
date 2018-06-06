@@ -33,10 +33,14 @@ class PatientContainer extends React.Component {
       cancelBooking: false,
       cancelReason: '',
       cancelBookingError: '',
-
+      value: 1,
+      assigned: false,
     };
   }
 
+  handleChange = (event, index, value) => {
+    this.setState({ value, assigned: false });
+  }
 
   componentDidMount() {
     let editableBooking;
@@ -66,6 +70,10 @@ class PatientContainer extends React.Component {
 
   cancelBooking() {
     this.setState({ showErrorTemplate: true, cancelBooking: true });
+  }
+
+  assignDr = () => {
+    this.setState({ assigned: true })
   }
 
   submit = () => {
@@ -102,14 +110,14 @@ class PatientContainer extends React.Component {
   render() {
 
     const data = [
-      {name: '10', uv: 4000, pv: 9000},
-      {name: '20', uv: 3000, pv: 7222},
-      {name: '30', uv: 2000, pv: 6222},
-      {name: '40', uv: 1223, pv: 5400},
-      {name: '50', uv: 1890, pv: 3200},
-      {name: '60', uv: 2390, pv: 2500},
-      {name: '70', uv: 3490, pv: 1209},
-];
+      { name: '10', uv: 4000, pv: 9000 },
+      { name: '20', uv: 3000, pv: 7222 },
+      { name: '30', uv: 2000, pv: 6222 },
+      { name: '40', uv: 1223, pv: 5400 },
+      { name: '50', uv: 1890, pv: 3200 },
+      { name: '60', uv: 2390, pv: 2500 },
+      { name: '70', uv: 3490, pv: 1209 },
+    ];
 
     const actionsButton = [
       <FlatButton
@@ -148,6 +156,61 @@ class PatientContainer extends React.Component {
 
         </Paper>
         <Paper style={GlobalStyle.containerPaperStyle} zDepth={0}>
+          <Grid fluid>
+            <Row>
+              <Col md={5}>
+                <h2 style={GlobalStyle.formHeadingsh1}>Patient Details: <span style={{ color: '#27BCBD' }}></span></h2>
+              </Col>
+              <Col md={7}>
+                {/* <Link to="">
+                  <FlatButton onClick={this.assignDr} label={this.state.assigned === true ? 'Assigned' : 'Assign Doctor'} className="add-button-on-header float-right" />
+                </Link> */}
+
+                <div style={{ display: 'inline-block' }}>
+                  <Row>
+                    <Col md={4} >
+                      <SelectField
+                        floatingLabelText="List of Doctors"
+                        className="search-text-field"
+                        value={this.state.value}
+                        onChange={this.handleChange}
+                      >
+                        <MenuItem value={1} primaryText="Dr. Arshaad" />
+                        <MenuItem value={2} primaryText="Dr. Hamid" />
+                        <MenuItem value={3} primaryText="Dr. Sarim" />
+                        <MenuItem value={4} primaryText="Dr. Subhan" />
+                        <MenuItem value={5} primaryText="Dr. Danish" />
+                      </SelectField>
+                    </Col>
+                    <Col md={1}>
+                    </Col>
+                    <Col md={3} >
+                      <SelectField
+                        style={{ width: '200px'}}
+                        floatingLabelText="Emg Department"
+                        className="search-text-field"
+                        value={this.state.value}
+                        onChange={this.handleChange}
+                      >
+                        <MenuItem value={1} primaryText="ER-1" />
+                        <MenuItem value={2} primaryText="ER-2" />
+                        <MenuItem value={3} primaryText="ER-3" />
+                        <MenuItem value={4} primaryText="ER-4" />
+                        <MenuItem value={5} primaryText="ER-5" />
+                      </SelectField>
+                    </Col>
+                     <Col md={1}>
+                    </Col>
+                    <Col md={3}>
+                    <FlatButton onClick={this.assignDr} label={this.state.assigned === true ? 'Assigned' : 'Assign Docter'} className="add-button-on-header float-right" />
+                    </Col>
+                  </Row>
+                </div>
+
+
+              </Col>
+            </Row>
+          </Grid>
           <SinglePatientDetail incomingPatient={this.state.booking} setValue={this.setValue} buttonHide={this.buttonHide} editMode={this.state.editMode} />
         </Paper>
         <Grid fluid style={GlobalStyle.containerHeader}>
@@ -156,7 +219,7 @@ class PatientContainer extends React.Component {
               <Link to="/home/admin/main">
                 <FlatButton label="Back" className="add-button add-button-back float-right" />
               </Link>
-             
+
             </Col>
           </Row>
         </Grid>
