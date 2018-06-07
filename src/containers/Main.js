@@ -21,6 +21,21 @@ import * as actions from '../actions/IncomingPatientAction';
 import IncomingPatient from '../components/booking/IncomingPatient';
 import { nextBookings, previousBookings, startRecord, endRecord, totalRecords } from '../utils/Pagination';
 import { patientData } from '../utils/data';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
+
+const shortSheets = {
+  width: '31%',
+  textAlign: 'center',
+  display: 'inline-block',
+  margin: '1rem 1rem',
+};
 
 class DashboardContainer extends Component {
   constructor(props) {
@@ -40,11 +55,14 @@ class DashboardContainer extends Component {
       value: 1,
       filteredValues: ['1', '2', '3', '4', '5'],
       selectedValue: '',
+      local: ['68', '110', '105'],
+      local2: ['68', '110', '105']
     };
     this.searchedRecords = [];
     this.startingNextCount = 0;
     this.currentPageNumber = -1;
     this.interval = () => { };
+    this.interval2 = () => { };
   }
 
 
@@ -52,6 +70,16 @@ class DashboardContainer extends Component {
     this.props.actions.getAllIncomingPatients();
     this.interval = setInterval(() => {
       this.props.actions.getAllIncomingPatients();
+    }, 1000);
+
+    this.interval2 = setInterval(() => {
+      let a = [];
+      for (let i = 0; i < this.state.local.length; i++) {
+        const random = Math.floor((Math.random() * 100) / 10);
+        a[i] = Number(this.state.local2[i]) + random;
+      }
+
+      this.setState({ local: a });
     }, 1000);
     // this.refreshBooking();
     // this.setState({shownRecords: patientData });
@@ -172,18 +200,149 @@ class DashboardContainer extends Component {
 
           <Grid>
             <Row>
-              <Col md={2} />
-              <Col md={8}>
-                <h1>Welcome to Droobi Hosiptal Managment System</h1>
+              <Col md={3} />
+              <Col md={7}>
+                <h1>Welcome to Droobi Ambulance System</h1>
               </Col>
               <Col md={2} />
             </Row>
           </Grid>
+        </Paper>
 
+        <Paper style={shortSheets} zDepth={0} >
+          <Grid fluid>
+            <Row>
+              <Col md={2}>
 
+              </Col>
+              <Col md={8}>
+                <span style={{ padding: '5px', fontSize: '20px' }}>Upcoming Patients</span>
+              </Col>
+              <Col md={2}>
+              </Col>
+
+            </Row>
+            <Row>
+              <Table onRowSelection={this.handleRowSelection}  >
+                <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                  <TableRow>
+                    <TableHeaderColumn>Name</TableHeaderColumn>
+                    <TableHeaderColumn>Disease</TableHeaderColumn>
+                    <TableHeaderColumn>Heart Rate</TableHeaderColumn>
+                  </TableRow>
+                </TableHeader>
+                <TableBody displayRowCheckbox={false}>
+                  <TableRow >
+                    <TableRowColumn>Faizan</TableRowColumn>
+                    <TableRowColumn>Heart</TableRowColumn>
+                    <TableRowColumn><span style={{ fontSize: '18px' }}>{this.state.local[0]}</span> bpm  </TableRowColumn>
+                  </TableRow>
+                  <TableRow >
+                    <TableRowColumn>Javed</TableRowColumn>
+                    <TableRowColumn>Heart</TableRowColumn>
+                    <TableRowColumn><span style={{ fontSize: '18px' }}>{this.state.local[1]} </span> bpm</TableRowColumn>
+                  </TableRow>
+                  <TableRow >
+                    <TableRowColumn>Haris</TableRowColumn>
+                    <TableRowColumn>Heart</TableRowColumn>
+                    <TableRowColumn><span style={{ fontSize: '18px' }}>{this.state.local[2]}</span> bpm</TableRowColumn>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Row>
+          </Grid>
+        </Paper>
+        <Paper style={shortSheets} zDepth={0} >
+          <Grid fluid>
+            <Row>
+              <Col md={2}>
+
+              </Col>
+              <Col md={8}>
+
+                <span style={{ padding: '5px', fontSize: '20px' }}>Doctors Available</span>
+              </Col>
+              <Col md={2}>
+              </Col>
+
+            </Row>
+            <Row>
+              <Table onRowSelection={this.handleRowSelection}  >
+                <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                  <TableRow>
+                    <TableHeaderColumn>Name</TableHeaderColumn>
+                    <TableHeaderColumn>Speciality</TableHeaderColumn>
+                    <TableHeaderColumn>ER</TableHeaderColumn>
+                  </TableRow>
+                </TableHeader>
+                <TableBody displayRowCheckbox={false}>
+                  <TableRow >
+                    <TableRowColumn>Dr. Jibran</TableRowColumn>
+                    <TableRowColumn>Surgeon</TableRowColumn>
+                    <TableRowColumn>2</TableRowColumn>
+                  </TableRow>
+                  <TableRow >
+                    <TableRowColumn>Dr. Ahmed</TableRowColumn>
+                    <TableRowColumn>Physician</TableRowColumn>
+                    <TableRowColumn>4</TableRowColumn>
+                  </TableRow>
+                  <TableRow >
+                    <TableRowColumn>Dr. Hamid</TableRowColumn>
+                    <TableRowColumn>Surgeon</TableRowColumn>
+                    <TableRowColumn>1</TableRowColumn>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Row>
+          </Grid>
+        </Paper>
+        <Paper style={shortSheets} zDepth={0} >
+          <Grid fluid>
+            <Row>
+              <Col md={2}>
+
+              </Col>
+              <Col md={8} >
+                <span style={{ padding: '5px', fontSize: '20px' }}>On going operations</span>
+              </Col>
+              <Col md={2}>
+              </Col>
+
+            </Row>
+            <Row>
+              <Table onRowSelection={this.handleRowSelection}  >
+                <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+                  <TableRow>
+                    <TableHeaderColumn>Patient</TableHeaderColumn>
+                    <TableHeaderColumn>Doctor</TableHeaderColumn>
+                    <TableHeaderColumn>Disease</TableHeaderColumn>
+                  </TableRow>
+                </TableHeader>
+                <TableBody displayRowCheckbox={false}>
+                  <TableRow >
+                    <TableRowColumn>Faizan</TableRowColumn>
+                    <TableRowColumn>Dr. Danish</TableRowColumn>
+                    <TableRowColumn>Kidney stones</TableRowColumn>
+                  </TableRow>
+                  <TableRow >
+                    <TableRowColumn>Hammad</TableRowColumn>
+                    <TableRowColumn>Dr. Azam</TableRowColumn>
+                    <TableRowColumn>Heart</TableRowColumn>
+                  </TableRow>
+                  <TableRow >
+                    <TableRowColumn>Naseer</TableRowColumn>
+                    <TableRowColumn>Dr. Waqas</TableRowColumn>
+                    <TableRowColumn>Eye</TableRowColumn>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Row>
+          </Grid>
+        </Paper>
+        <Paper style={GlobalStyle.containerPaperStyle} zDepth={0}>
           <Grid>
             <Row>
-              <Col md={1} />
+              <Col md={2} />
               <Col md={3}>
                 <div onClick={() => { browserHistory.push('/home/admin/main'); }}>
                   <svg style={{ width: '50%', height: '50%' }} viewBox="0 0 24 24">
@@ -192,6 +351,28 @@ class DashboardContainer extends Component {
                   <div style={{ marginLeft: '45px', fontSize: '20px' }}>Home</div>
                 </div>
               </Col>
+              <Col md={3}>
+                <div onClick={() => { browserHistory.push('/home/admin/patient-enroute'); }}>
+                  <svg style={{ width: '50%', height: '50%' }} viewBox="0 0 24 24">
+                    <path fill="#27BCBD" d="M11,10H5L3,8L5,6H11V3L12,2L13,3V4H19L21,6L19,8H13V10H19L21,12L19,14H13V20A2,2 0 0,1 15,22H9A2,2 0 0,1 11,20V10Z" />
+                  </svg>
+                  <div style={{ marginLeft: '5px', fontSize: '20px' }}>Patient Enroute</div>
+                </div>
+
+              </Col>
+              <Col md={3}>
+                <div onClick={() => { browserHistory.push('/home/admin/ambulance'); }}>
+                  <svg style={{ width: '50%', height: '50%' }} viewBox="0 0 24 24">
+                    <path fill="#27BCBD" d="M18,18.5A1.5,1.5 0 0,0 19.5,17A1.5,1.5 0 0,0 18,15.5A1.5,1.5 0 0,0 16.5,17A1.5,1.5 0 0,0 18,18.5M19.5,9.5H17V12H21.46L19.5,9.5M6,18.5A1.5,1.5 0 0,0 7.5,17A1.5,1.5 0 0,0 6,15.5A1.5,1.5 0 0,0 4.5,17A1.5,1.5 0 0,0 6,18.5M20,8L23,12V17H21A3,3 0 0,1 18,20A3,3 0 0,1 15,17H9A3,3 0 0,1 6,20A3,3 0 0,1 3,17H1V6C1,4.89 1.89,4 3,4H17V8H20M8,6V9H5V11H8V14H10V11H13V9H10V6H8Z" />
+                  </svg>
+                  <div style={{ marginLeft: '22px', fontSize: '20px' }}>Ambulance</div>
+                </div>
+              </Col>
+              {/* <Col md={1} /> */}
+            </Row>
+
+            {/* <Row>
+              <Col md={1} />
               <Col md={3}>
                 <div onClick={() => { browserHistory.push('/home/admin/dashboard'); }}>
                   <svg style={{ width: '50%', height: '50%' }} viewBox="0 0 24 24">
@@ -208,27 +389,6 @@ class DashboardContainer extends Component {
                   <div style={{ marginLeft: '6px', fontSize: '20px' }}>Patient History</div>
                 </div>
               </Col>
-              <Col md={1} />
-            </Row>
-
-            <Row>
-              <Col md={1} />
-              <Col md={3}>
-                <div onClick={() => { browserHistory.push('/home/admin/patient-enroute'); }}>
-                  <svg style={{ width: '50%', height: '50%' }} viewBox="0 0 24 24">
-                    <path fill="#27BCBD" d="M11,10H5L3,8L5,6H11V3L12,2L13,3V4H19L21,6L19,8H13V10H19L21,12L19,14H13V20A2,2 0 0,1 15,22H9A2,2 0 0,1 11,20V10Z" />
-                  </svg>
-                  <div style={{ marginLeft: '5px', fontSize: '20px' }}>Patient Enroute</div>
-                </div>
-              </Col>
-              <Col md={3}>
-                <div onClick={() => { browserHistory.push('/home/admin/ambulance'); }}>
-                  <svg style={{ width: '50%', height: '50%' }} viewBox="0 0 24 24">
-                    <path fill="#27BCBD" d="M18,18.5A1.5,1.5 0 0,0 19.5,17A1.5,1.5 0 0,0 18,15.5A1.5,1.5 0 0,0 16.5,17A1.5,1.5 0 0,0 18,18.5M19.5,9.5H17V12H21.46L19.5,9.5M6,18.5A1.5,1.5 0 0,0 7.5,17A1.5,1.5 0 0,0 6,15.5A1.5,1.5 0 0,0 4.5,17A1.5,1.5 0 0,0 6,18.5M20,8L23,12V17H21A3,3 0 0,1 18,20A3,3 0 0,1 15,17H9A3,3 0 0,1 6,20A3,3 0 0,1 3,17H1V6C1,4.89 1.89,4 3,4H17V8H20M8,6V9H5V11H8V14H10V11H13V9H10V6H8Z" />
-                  </svg>
-                  <div style={{ marginLeft: '22px', fontSize: '20px' }}>Ambulance</div>
-                </div>
-              </Col>
               <Col md={3}>
                 <div onClick={() => { browserHistory.push('/home/admin/config'); }}>
                   <svg style={{ width: '50%', height: '50%' }} viewBox="0 0 24 24">
@@ -238,7 +398,7 @@ class DashboardContainer extends Component {
                 </div>
               </Col>
               <Col md={1} />
-            </Row>
+            </Row> */}
 
           </Grid>
 
