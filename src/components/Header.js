@@ -132,7 +132,9 @@ class HeaderMenu extends Component {
             size="massive"
             className="menu-header border-transparent"
           >
-            <Menu.Item name="Admin Portal" className="menu-header-list" active={activeItem === 'Admin'} onClick={(e) => { this.handleItemClick(e, 'Admin'); }} />
+            <Menu.Item className="menu-header-list" active={activeItem === 'Admin'} onClick={(e) => { this.handleItemClick(e, 'Admin'); }} >
+              <span >Admin Portal</span>
+            </Menu.Item>
 
           </Menu>
           : null}
@@ -156,8 +158,8 @@ class HeaderMenu extends Component {
           <div style={{ display: 'flex', fontWeight: 'bold' }}>
             <div className="account" > <img alt="profile" height="42px" width="42px" src={ProfileAvatar} /> </div>
             <div style={{ height: 'fit-content', marginTop: 10 }}>
-              <div style={{ fontSize: 10 }}>Logged in as</div>
-              <div>{loggedUserName}</div>
+              <div style={{ fontSize: 10, color:'#715E0B' }}>Logged in as</div>
+              <div style={{color:'#715E0B'}}>{loggedUserName}</div>
             </div>
           </div>
           <Popover

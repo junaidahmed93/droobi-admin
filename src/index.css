@@ -140,7 +140,7 @@ body {
 }
 
 .custom-header {
-  background-color: #ffffff !important;
+  background-color: #FFD100 !important;
   position: sticky !important;
   top:0;
   z-index: 2;
@@ -1115,6 +1115,11 @@ tr.style-row td.action-cell{
 
 .menu-header-list{
   line-height: 30px !important;
+}
+
+.menu-header-list span{
+  color: #715E0B !important;  
+  font-size: 20px
 }
 
 .table-row-style{

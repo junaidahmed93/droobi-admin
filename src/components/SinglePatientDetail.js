@@ -95,7 +95,7 @@ export default class BookingEditForm extends React.Component {
                 </Row>
 
                 <Row style={{ padding: '5px' }}>
-                  <Col md={6}> Operated </Col>
+                  <Col md={6}> Temprature </Col>
                   <Col md={6}> {incomingPatient.operated} </Col>
                 </Row>
 
