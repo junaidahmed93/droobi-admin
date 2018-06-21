@@ -86,7 +86,7 @@ class DashboardContainer extends Component {
       }
 
       this.setState({ local: a });
-    }, 5000);
+    }, 1000);
     // this.refreshBooking();
     // this.setState({shownRecords: patientData });
   }
@@ -113,7 +113,7 @@ class DashboardContainer extends Component {
         shownRecords: nextProps.bookings.slice(startCount, endCount),
         storedRecords: nextProps.bookings,
       });
-    }, 5000);
+    }, 1000);
   }
 
 
