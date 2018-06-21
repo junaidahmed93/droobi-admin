@@ -186,7 +186,7 @@ class PatientContainer extends React.Component {
                         <MenuItem value={3} primaryText="Dr. Sarim" />
                         <MenuItem value={4} primaryText="Dr. Subhan" />
                         <MenuItem value={5} primaryText="Dr. Danish" />
-                      </SelectField>
+                      </SelectField> 
                     </Col>
                     <Col md={1} />
                     <Col md={3} >

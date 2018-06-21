@@ -6,7 +6,7 @@ import { browserHistory } from 'react-router';
 import imageUrl from '../assets/images/profile.png';
 import { loadState } from '../utils/StorageUtils';
 import DroobiLogo from '../assets/images/droobi_logo.svg';
-import ProfileAvatar from '../assets/images/avatar.jpeg';
+import ProfileAvatar from '../assets/images/manAvatar.svg';
 
 class HeaderMenu extends Component {
   constructor(props) {

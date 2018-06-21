@@ -3,7 +3,7 @@ import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowCol
 import { browserHistory } from 'react-router';
 import GlobalStyle from '../../utils/Styles';
 import statusMapping from '../../utils/StatusMapping';
-
+import Doctor from '../../assets/images/doctor.svg';
 export default class BookingTable extends React.Component {
   constructor(props) {
     super(props);
@@ -16,8 +16,13 @@ export default class BookingTable extends React.Component {
   }
 
   handleCellClick(rowNumber, columnNumber, evt) {
-    const id = evt.target.dataset.uid;
-    browserHistory.push(`/home/admin/patient-history/${id}`);
+    if (columnNumber === 6) {
+     
+    }
+    else {
+      const id = evt.target.dataset.uid;
+      browserHistory.push(`/home/admin/patient-history/${id}`);
+    }
   }
 
   getColor(initialValue, updateValue) {
@@ -38,6 +43,10 @@ export default class BookingTable extends React.Component {
         <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.disease}</TableRowColumn>
         <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>{data.ETA}min</TableRowColumn>
         <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}> <span style={{ color: `${data.color}` }}>{data.heartRate}bpm </span></TableRowColumn>
+        <TableRowColumn data-uid={data.id} style={GlobalStyle.tableRowCell}>
+          <img src={Doctor} onClick={() => this.props.assignDoctor()} />
+          {/* <AccountBox onClick={() => this.viewOpsDetail()} /> */}
+        </TableRowColumn>
 
       </TableRow>
 
@@ -52,6 +61,7 @@ export default class BookingTable extends React.Component {
             <TableHeaderColumn style={GlobalStyle.tableRowCell}>Disease</TableHeaderColumn>
             <TableHeaderColumn style={GlobalStyle.tableRowCell}>ETA</TableHeaderColumn>
             <TableHeaderColumn style={GlobalStyle.tableRowCell}>Heart Rate</TableHeaderColumn>
+            <TableHeaderColumn style={GlobalStyle.tableRowCell}>Doctor</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody displayRowCheckbox={this.state.showCheckboxes} >

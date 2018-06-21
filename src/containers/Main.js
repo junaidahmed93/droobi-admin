@@ -6,6 +6,7 @@ import { browserHistory } from 'react-router';
 import LeftArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-left';
 import RightArrow from 'material-ui/svg-icons/hardware/keyboard-arrow-right';
 import SelectField from 'material-ui/SelectField';
+import Dialog from 'material-ui/Dialog';
 import { Link } from 'react-router';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -52,11 +53,16 @@ class DashboardContainer extends Component {
       showSearchbar: false,
       showFilterBar: false,
       showTagBar: false,
-      value: 1,
+      value: '',
+      deptValue: '',
+      doctValue: '',
+      errorText: '',
+      errorClass: '',
       filteredValues: ['1', '2', '3', '4', '5'],
       selectedValue: '',
       local: ['68', '110', '105'],
-      local2: ['68', '110', '105']
+      local2: ['68', '110', '105'],
+      doctors: ['Dr. Arshaad', 'Dr. Sarim', 'Dr. Haris', 'Dr. Ahmed'],
     };
     this.searchedRecords = [];
     this.startingNextCount = 0;
@@ -80,7 +86,7 @@ class DashboardContainer extends Component {
       }
 
       this.setState({ local: a });
-    }, 1000);
+    }, 5000);
     // this.refreshBooking();
     // this.setState({shownRecords: patientData });
   }
@@ -107,7 +113,7 @@ class DashboardContainer extends Component {
         shownRecords: nextProps.bookings.slice(startCount, endCount),
         storedRecords: nextProps.bookings,
       });
-    }, 1);
+    }, 5000);
   }
 
 
@@ -190,9 +196,34 @@ class DashboardContainer extends Component {
 
   handleChange = (event, index, values) => this.setState({ values });
 
+  handleChangeDept = (event, index, values) => this.setState({ deptValue: values });
+
+  handleChangeDoct = (event, index, values) => this.setState({ doctValue: values });
+
+  assigndoc = () => {
+    this.state.shownRecords.pop();
+
+    this.setState({ open: false, shownRecords: this.state.shownRecords });
+  }
+  assignDoctor = () => {
+    this.setState({ open: true });
+  }
+
+  onClickDialoge = () => {
+    this.setState({ open: false });
+  }
 
   render() {
-    const { values, selectedValue, filteredValues } = this.state;
+    const actionsButton = [
+      <FlatButton
+        label="Cancel"
+        primary
+        keyboardFocused
+        onClick={() => { this.onClickDialoge(); }}
+      />,
+    ];
+
+    const { values, selectedValue, filteredValues, doctors, open, errorText, value } = this.state;
     return (
       <div id="vehicleContainer">
         <Paper style={GlobalStyle.containerPaperStyle} zDepth={0}>
@@ -301,13 +332,13 @@ class DashboardContainer extends Component {
             <Row between="xs">
               <Col xs={6} style={GlobalStyle.containerHeader}>
                 <span className="paper-title">Patients Enroute to Hospital</span> <span>Real time data coming from Ambulance</span>
-               
+
               </Col>
               <Col xs={6} />
             </Row>
           </Grid>
           <Divider className="paper-divider m-top-bottom-07em bold-hr" />
-          <IncomingPatient rows={this.state.shownRecords} />
+          <IncomingPatient rows={this.state.shownRecords} assignDoctor={this.assignDoctor} />
 
           <div className="flex-container-pagination Pagination">
             <div className="pagination-child pagination-child-count">
@@ -324,6 +355,65 @@ class DashboardContainer extends Component {
           </div>
           <div style={{ clear: 'both' }} />
         </Paper>
+
+
+        <Dialog
+          title="Upcoming requests"
+          actions={actionsButton}
+          modal={false}
+          open={open}
+          onRequestClose={this.handleClose}
+          autoScrollBodyContent
+        >
+          <div>
+
+            <Grid>
+
+              <Row>
+                <br />
+              </Row>
+              <Row>
+                Assign Manually
+              </Row>
+              <Row>
+                <Col md={4}>
+                  <SelectField
+                    floatingLabelText="List of Doctors"
+                    className="search-text-field"
+                    value={this.state.doctValue}
+                    onChange={this.handleChangeDoct}
+                  >
+
+                    {doctors.map(v => <MenuItem value={v} primaryText={v} key={v} />)}
+                  </SelectField>
+                </Col>
+                <Col md={1}></Col>
+                <Col md={4}>
+                  <SelectField
+                    style={{ width: '200px' }}
+                    floatingLabelText="Emg Department"
+                    className="search-text-field"
+                    value={this.state.deptValue}
+                    onChange={this.handleChangeDept}
+                  >
+                    <MenuItem value={1} primaryText="ER-1" />
+                    <MenuItem value={2} primaryText="ER-2" />
+                    <MenuItem value={3} primaryText="ER-3" />
+                    <MenuItem value={4} primaryText="ER-4" />
+                    <MenuItem value={5} primaryText="ER-5" />
+                  </SelectField>
+                </Col>
+                <Col md={2}>
+                  <FlatButton
+                    label="Assign"
+                    primary
+                    onClick={this.assigndoc}
+                  />
+                </Col>
+              </Row>
+            </Grid>
+          </div>
+        </Dialog>
       </div>
     );
   }
